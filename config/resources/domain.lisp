@@ -6,6 +6,14 @@
 ;; after altering this file.
 
 ;; Describe your resources here
+(define-resource topic ()
+  :class (s-prefix "ext:Topic")
+  :properties `((:title :string ,(s-prefix "dct:title"))
+                (:description :string ,(s-prefix "dct:description"))
+                (:votes :number ,(s-prefix "votes:voteCount")))
+  :resource-base (s-url "http://tmp.semte.ch/resources/topics/")
+  :on-path "topics")
+
 
 ;; The general structure could be described like this:
 ;;
@@ -28,6 +36,7 @@
 
 ;; An example setup with a catalog, dataset, themes would be:
 ;;
+
 ;; (define-resource catalog ()
 ;;   :class (s-prefix "dcat:Catalog")
 ;;   :properties `((:title :string ,(s-prefix "dct:title")))
