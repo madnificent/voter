@@ -14,6 +14,20 @@
   :resource-base (s-url "http://tmp.semte.ch/resources/topics/")
   :on-path "topics")
 
+(defun remove-topic-votes-from-input (json-input)
+  "removes the votes input key from the input values"
+  (alexandria:when-let ((attrs (jsown:filter json-input "data" "attributes")))
+    (when (jsown:keyp attrs "votes")
+      (jsown:remkey attrs "votes"))))
+
+(before (:create topic) (json-input item-spec)
+  (declare (ignore item-spec))
+  (remove-topic-votes-from-input json-input))
+
+(before (:update topic) (json-input item-spec)
+  (declare (ignore item-spec))
+  (remove-topic-votes-from-input json-input))
+
 
 ;; The general structure could be described like this:
 ;;
