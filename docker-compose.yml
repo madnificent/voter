@@ -12,6 +12,10 @@ services:
       - resource:resource
     volumes:
       - ./config/dispatcher:/config
+  plusOne:
+    image: madnificent/plus-one-service
+    links:
+      - db:database
   db:
     image: tenforce/virtuoso:1.0.0-virtuoso7.2.0
     environment:
