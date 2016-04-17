@@ -11,6 +11,8 @@ services:
     links:
       - resource:resource
       - plusOne:plusOne
+      - login:login
+      - registration:registration
     volumes:
       - ./config/dispatcher:/config
   plusOne:
@@ -32,3 +34,15 @@ services:
       - db:database
     volumes:
       - ./config/resources:/config
+  registration:
+    image: semtech/mu-registration-service:2.4.0
+    links:
+      - db:database
+    environment:
+      MU_APPLICATION_SALT: mysupersecretsaltchangeme
+  login:
+    image: semtech/mu-login-service:2.5.0
+    links:
+      - db:database
+    environment:
+      MU_APPLICATION_SALT: mysupersecretsaltchangeme
