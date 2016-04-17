@@ -23,11 +23,11 @@ defmodule Dispatcher do
   # end
 
   match "/topics/*path" do
-    Proxy.forward conn, path, "http://resource/topics"
+    Proxy.forward conn, path, "http://resource/topics/"
   end
 
   match "/vote/*path" do
-    Proxy.forward conn, path, "http://plusOne"
+    Proxy.forward conn, path, "http://plusOne/"
   end
 
   match _ do
